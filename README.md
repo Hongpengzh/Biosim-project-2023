@@ -31,3 +31,5 @@ After the simulation, you can call makemovie() method to get the movie of the si
 ### Documentation
 1. Have meaningful docstrings for all classes and methods
 2. Use advanced Sphinx features, e.g., example code, note boxes, and figures
+## Author
+ Hongpeng Zhang & Sujan Devkota
