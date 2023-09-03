@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Cell &mdash; BioSim 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Animal" href="Animaldoc.html" />
+    <link rel="prev" title="Map" href="Mapdoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> BioSim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="classesdoc.html">Packages required</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="classesdoc.html#modules">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulationdoc.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mapdoc.html">Map</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Animaldoc.html">Animal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Graphicsdoc.html">Graphics</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BioSim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="classesdoc.html">Packages required</a> &raquo;</li>
+        
+      <li>Cell</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Celldoc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-biosim.Cell">
+<span id="cell"></span><h1>Cell<a class="headerlink" href="#module-biosim.Cell" title="Permalink to this heading">¶</a></h1>
+<p>The Animal class with Herbivores and Carnivores as subclasses of Animal.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biosim.Cell.Cell">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biosim.Cell.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geography</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fodder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animal_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Carnivores_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class Cell for one landscape type where animals reside.</p>
+<p>Constructor for class Cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geography</strong> (<em>str</em>) – Water, Lowland, Highland or Desert</p></li>
+<li><p><strong>fodder</strong> (<em>int</em>) – </p></li>
+<li><p><strong>animal_list</strong> (<em>list</em>) – Herbivore list</p></li>
+<li><p><strong>Carnivores_list</strong> (<em>list</em>) – Carnivore list</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul>
+<li><p>Geography or landscape types are Lowland, Highland, Desert and water.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">geography_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s1">&#39;Water&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="s1">&#39;Lowland&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="s1">&#39;Highland&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;Desert&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.animal_migration">
+<span class="sig-name descname"><span class="pre">animal_migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neighbors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.animal_migration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.animal_migration" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to check if the animal wants to migrate. If the animal wants to stay, then the method</dt><dd><p>updates the animal in the stay list for both herbivores and carnivores in a particular
+cell. If the animal wants to move then it appends the list of the destination cell.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>neighbors</strong> (<em>list</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.carnivore_birth">
+<span class="sig-name descname"><span class="pre">carnivore_birth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.carnivore_birth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.carnivore_birth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that checks if carnivore animal has given birth and updates the carnivore animal list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Baby herbivore animal list</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.carnivore_death">
+<span class="sig-name descname"><span class="pre">carnivore_death</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.carnivore_death"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.carnivore_death" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to check if the carnivore animal wants to die. If the animal dies, it removes the</dt><dd><p>animal from the carnivore list.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of died carnivore animals</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.feed_animals">
+<span class="sig-name descname"><span class="pre">feed_animals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.feed_animals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.feed_animals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to feed herbivore animals in the random order and stop when the fodder is not enough</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.feed_carnivores">
+<span class="sig-name descname"><span class="pre">feed_carnivores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.feed_carnivores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.feed_carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to feed carnivores.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.grow_and_loose_weight_carnivore">
+<span class="sig-name descname"><span class="pre">grow_and_loose_weight_carnivore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.grow_and_loose_weight_carnivore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.grow_and_loose_weight_carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to increase the age of the carnivore animal each year and decrease the weight of the</dt><dd><p>carnivore animal in a cell.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.grow_and_loose_weight_herbivore">
+<span class="sig-name descname"><span class="pre">grow_and_loose_weight_herbivore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.grow_and_loose_weight_herbivore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.grow_and_loose_weight_herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to increase the age of the herbivore animal each year and decrease the weight of the</dt><dd><p>herbivore animal in a cell.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.herbivore_birth">
+<span class="sig-name descname"><span class="pre">herbivore_birth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.herbivore_birth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.herbivore_birth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that checks if herbivore animal has given birth and updates the herbivore animal list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Baby herbivore animal list</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.herbivore_death">
+<span class="sig-name descname"><span class="pre">herbivore_death</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.herbivore_death"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.herbivore_death" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to check if the herbivore animal wants to die. If the animal dies, it removes the</dt><dd><p>animal from the herbivore list.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of died herbivore animals</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.produce_fodder">
+<span class="sig-name descname"><span class="pre">produce_fodder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.produce_fodder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.produce_fodder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to add fodder to the geography type. There is no fodder in desert and water.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Cell.Cell.update_cell_para">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_cell_para</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">landscape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Cell.html#Cell.update_cell_para"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Cell.Cell.update_cell_para" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to update parameters in the cell. Raises value error if values are negative</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>landscape</strong> (<em>str</em>) – </p></li>
+<li><p><strong>params</strong> (<em>dictionary</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Animaldoc.html" class="btn btn-neutral float-right" title="Animal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Mapdoc.html" class="btn btn-neutral float-left" title="Map" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hongpeng Zhang &amp; Sujan Devkota.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

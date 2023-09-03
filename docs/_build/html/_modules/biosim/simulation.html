@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>biosim.simulation &mdash; BioSim 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> BioSim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../classesdoc.html">Packages required</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classesdoc.html#modules">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BioSim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>biosim.simulation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for biosim.simulation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">BioSim class. Top level class of the simulation</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Hongpeng Zhang and Sujan Devkota&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;hongpeng.zhang@nmbu.no and sujan.devkota@nmbu.no&#39;</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">biosim</span> <span class="kn">import</span> <span class="n">Cell</span><span class="p">,</span> <span class="n">Animal</span><span class="p">,</span> <span class="n">Graphics</span>
+<span class="kn">from</span> <span class="nn">biosim</span> <span class="kn">import</span> <span class="n">Map</span>
+
+
+<div class="viewcode-block" id="BioSim"><a class="viewcode-back" href="../../simulationdoc.html#biosim.simulation.BioSim">[docs]</a><span class="k">class</span> <span class="nc">BioSim</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Top-level interface to BioSim package.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">geography_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s1">&#39;Water&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="s1">&#39;Lowland&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="s1">&#39;Highland&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;Desert&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">island_map</span><span class="p">,</span> <span class="n">ini_pop</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span>
+                 <span class="n">vis_years</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymax_animals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cmax_animals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hist_specs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">img_years</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">img_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">img_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">img_fmt</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>
+                 <span class="n">log_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        island_map : str</span>
+<span class="sd">            Multi-line string specifying island geography</span>
+<span class="sd">        ini_pop : list</span>
+<span class="sd">            List of dictionaries specifying initial population</span>
+<span class="sd">        seed : int</span>
+<span class="sd">            Integer used as random number seed</span>
+<span class="sd">        vis_years : int</span>
+<span class="sd">            Years between visualization updates (if 0, disable graphics)</span>
+<span class="sd">        ymax_animals : int</span>
+<span class="sd">            Number specifying y-axis limit for graph showing animal numbers</span>
+<span class="sd">        cmax_animals : dict</span>
+<span class="sd">            Color-scale limits for animal densities, see below</span>
+<span class="sd">        hist_specs : dict</span>
+<span class="sd">            Specifications for histograms, see below</span>
+<span class="sd">        img_years : int</span>
+<span class="sd">            Years between visualizations saved to files (default: `vis_years`)</span>
+<span class="sd">        img_dir : str</span>
+<span class="sd">            Path to directory for figures</span>
+<span class="sd">        img_base : str</span>
+<span class="sd">            Beginning of file name for figures</span>
+<span class="sd">        img_fmt : str</span>
+<span class="sd">            File type for figures, e.g. &#39;png&#39; or &#39;pdf&#39;</span>
+<span class="sd">        log_file : str</span>
+<span class="sd">            If given, write animal counts to this file</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - If `ymax_animals` is None, the y-axis limit should be adjusted automatically.</span>
+<span class="sd">        - If `cmax_animals` is None, sensible, fixed default values should be used.</span>
+<span class="sd">        - `cmax_animals` is a dict mapping species names to numbers, e.g.,</span>
+
+<span class="sd">          .. code:: python</span>
+
+<span class="sd">             {&#39;Herbivore&#39;: 50, &#39;Carnivore&#39;: 20}</span>
+
+<span class="sd">        - `hist_specs` is a dictionary with one entry per property for which a histogram</span>
+<span class="sd">          shall be shown. For each property, a dictionary providing the maximum value</span>
+<span class="sd">          and the bin width must be given, e.g.,</span>
+
+<span class="sd">          .. code:: python</span>
+
+<span class="sd">             {&#39;weight&#39;: {&#39;max&#39;: 80, &#39;delta&#39;: 2},</span>
+<span class="sd">              &#39;fitness&#39;: {&#39;max&#39;: 1.0, &#39;delta&#39;: 0.05}}</span>
+
+<span class="sd">          Permitted properties are &#39;weight&#39;, &#39;age&#39;, &#39;fitness&#39;.</span>
+<span class="sd">        - If `img_dir` is None, no figures are written to file.</span>
+<span class="sd">        - Filenames are formed as</span>
+
+<span class="sd">          .. code:: python</span>
+
+<span class="sd">             Path(img_dir) / f&#39;{img_base}_{img_number:05d}.{img_fmt}&#39;</span>
+
+<span class="sd">          where `img_number` are consecutive image numbers starting from 0.</span>
+
+<span class="sd">        - `img_dir` and `img_base` must either be both None or both strings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check if the map is legal</span>
+        <span class="n">row_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">island_map</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">row_lengths</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The Map must be a square or a Rectangle&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">map_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">island_map</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)])</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">map_array</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="nb">any</span><span class="p">(</span><span class="n">map_array</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span> <span class="o">|</span> \
+                    <span class="nb">any</span><span class="p">(</span><span class="n">map_array</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="nb">any</span><span class="p">(</span><span class="n">map_array</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The boundary of the map must be &quot;H&quot;&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">island_map</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">letter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">BioSim</span><span class="o">.</span><span class="n">geography_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">letter</span><span class="si">}</span><span class="s1">&quot;  is not a proper landscape type&#39;</span>
+                                 <span class="sa">f</span><span class="s1">&#39;, landscape type must be one of &quot;W&quot;, &quot;D&quot;, &quot;H&quot;, &quot;L&quot;&#39;</span><span class="p">)</span>
+
+        <span class="c1"># init the sim if map is legal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">island_map</span> <span class="o">=</span> <span class="n">island_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ini_pop</span> <span class="o">=</span> <span class="n">ini_pop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_map_instance</span> <span class="o">=</span> <span class="n">Map</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map</span><span class="p">)</span>   <span class="c1"># make a map instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_herbivores_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carnivores_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_population</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ini_pop</span><span class="p">)</span>
+        <span class="c1"># arguments about ploting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ymax_animals</span> <span class="o">=</span> <span class="n">ymax_animals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmax_animals</span> <span class="o">=</span> <span class="n">cmax_animals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hist_specs</span> <span class="o">=</span> <span class="n">hist_specs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_dir</span> <span class="o">=</span> <span class="n">img_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_base</span> <span class="o">=</span> <span class="n">img_base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_years</span> <span class="o">=</span> <span class="n">img_years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vis_years</span> <span class="o">=</span> <span class="n">vis_years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_fmt</span> <span class="o">=</span> <span class="n">img_fmt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span> <span class="o">=</span> <span class="n">Graphics</span><span class="o">.</span><span class="n">Graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_base</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">img_fmt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_specs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BioSim.set_animal_parameters"><a class="viewcode-back" href="../../simulationdoc.html#biosim.simulation.BioSim.set_animal_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_animal_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set parameters for animal species.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        species : str</span>
+<span class="sd">            Name of species for which parameters shall be set.</span>
+<span class="sd">        params : dict</span>
+<span class="sd">            New parameter values</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If invalid parameter values are passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">species</span> <span class="o">==</span> <span class="s1">&#39;Herbivore&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">species</span> <span class="o">==</span> <span class="s1">&#39;Carnivore&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">species</span> <span class="o">==</span> <span class="s1">&#39;Herbivore&#39;</span><span class="p">:</span>
+                <span class="n">Animal</span><span class="o">.</span><span class="n">Herbivores</span><span class="o">.</span><span class="n">update_para</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">species</span> <span class="o">==</span> <span class="s1">&#39;Carnivore&#39;</span><span class="p">:</span>
+                <span class="n">Animal</span><span class="o">.</span><span class="n">Carnivores</span><span class="o">.</span><span class="n">update_para</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s1">&quot; is not right, Species must be Herbivore or Carnivore&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BioSim.set_landscape_parameters"><a class="viewcode-back" href="../../simulationdoc.html#biosim.simulation.BioSim.set_landscape_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">set_landscape_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">landscape</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set parameters for landscape type.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        landscape : str</span>
+<span class="sd">            Code letter for landscape</span>
+<span class="sd">        params : dict</span>
+<span class="sd">            New parameter values</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If invalid parameter values are passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">landscape</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">landscape</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">):</span>
+            <span class="n">Cell</span><span class="o">.</span><span class="n">Cell</span><span class="o">.</span><span class="n">update_cell_para</span><span class="p">(</span><span class="n">landscape</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">landscape</span><span class="si">}</span><span class="s1">&quot; is not right, landscape must be &quot;L&quot; or &quot;H&quot;&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BioSim.simulate"><a class="viewcode-back" href="../../simulationdoc.html#biosim.simulation.BioSim.simulate">[docs]</a>    <span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_years</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run simulation while visualizing the result.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        num_years : int</span>
+<span class="sd">            Number of years to simulate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vis_years</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vis_years</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_years</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">img_years</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vis_years</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_years</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">vis_years</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;img_years must be multiple of vis_years&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_final_years</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">+</span> <span class="n">num_years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_final_years</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_years</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmax_animals</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_years</span><span class="p">:</span>
+            <span class="c1"># Map and Cells annual cycle</span>
+            <span class="n">animal_percell_year</span><span class="p">,</span> <span class="n">carnivore_percell_year</span><span class="p">,</span>\
+                <span class="n">Herbivores_distribute</span><span class="p">,</span> <span class="n">Carnivores_distribute</span><span class="p">,</span>\
+                <span class="n">h_fitness_list</span><span class="p">,</span> <span class="n">h_age_list</span><span class="p">,</span> <span class="n">h_weight_list</span><span class="p">,</span>\
+                <span class="n">c_fitness_list</span><span class="p">,</span> <span class="n">c_age_list</span><span class="p">,</span> <span class="n">c_weight_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_instance</span><span class="o">.</span><span class="n">annul_cycle</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_herbivores_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carnivores_num</span> <span class="o">=</span> \
+                <span class="nb">len</span><span class="p">(</span><span class="n">animal_percell_year</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">carnivore_percell_year</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">vis_years</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_year_counter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_year</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_fauna_amount</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_year</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">animal_percell_year</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">carnivore_percell_year</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_herbivores_distribute</span><span class="p">(</span><span class="n">Herbivores_distribute</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_carnivores_distribute</span><span class="p">(</span><span class="n">Carnivores_distribute</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_fitness</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_year</span><span class="p">,</span> <span class="n">h_fitness_list</span><span class="p">,</span> <span class="n">c_fitness_list</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_age</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_year</span><span class="p">,</span> <span class="n">h_age_list</span><span class="p">,</span> <span class="n">c_age_list</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">update_weight</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_year</span><span class="p">,</span> <span class="n">h_weight_list</span><span class="p">,</span> <span class="n">c_weight_list</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_years</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">save_graphics</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="BioSim.add_population"><a class="viewcode-back" href="../../simulationdoc.html#biosim.simulation.BioSim.add_population">[docs]</a>    <span class="k">def</span> <span class="nf">add_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a population to the island</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        population : List of dictionaries</span>
+<span class="sd">            See BioSim Task Description, Sec 3.3.3 for details.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">animal_num</span><span class="p">,</span> <span class="n">carnivores_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_instance</span><span class="o">.</span><span class="n">add_fauna</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_year</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_herbivores_num</span> <span class="o">+=</span> <span class="n">animal_num</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_carnivores_num</span> <span class="o">+=</span> <span class="n">carnivores_num</span>
+
+        <span class="k">return</span> <span class="n">animal_num</span><span class="p">,</span> <span class="n">carnivores_num</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Last year simulated.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_year</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Total number of animals on island.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_herbivores_num</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carnivores_num</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_animals_per_species</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Number of different species.&quot;&quot;&quot;</span>
+        <span class="n">species_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Herbivore&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_herbivores_num</span><span class="p">,</span> <span class="s1">&#39;Carnivore&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carnivores_num</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">species_dict</span>
+
+<div class="viewcode-block" id="BioSim.make_movie"><a class="viewcode-back" href="../../simulationdoc.html#biosim.simulation.BioSim.make_movie">[docs]</a>    <span class="k">def</span> <span class="nf">make_movie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make movie after the simulation figures of each year saved&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_graphics</span><span class="o">.</span><span class="n">make_movie</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hongpeng Zhang &amp; Sujan Devkota.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Animal &mdash; BioSim 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graphics" href="Graphicsdoc.html" />
+    <link rel="prev" title="Cell" href="Celldoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> BioSim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="classesdoc.html">Packages required</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="classesdoc.html#modules">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulationdoc.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mapdoc.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Celldoc.html">Cell</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Animal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Graphicsdoc.html">Graphics</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BioSim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="classesdoc.html">Packages required</a> &raquo;</li>
+        
+      <li>Animal</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Animaldoc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-biosim.Animal">
+<span id="animal"></span><h1>Animal<a class="headerlink" href="#module-biosim.Animal" title="Permalink to this heading">¶</a></h1>
+<p>The Animal class with Herbivores and Carnivores as subclasses of Animal.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biosim.Animal.Animal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biosim.Animal.</span></span><span class="sig-name descname"><span class="pre">Animal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal" title="Permalink to this definition">¶</a></dt>
+<dd><p>The animal class with Herbivores and carnivores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – </p></li>
+<li><p><strong>weight</strong> (<em>float</em><em> or </em><em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.die">
+<span class="sig-name descname"><span class="pre">die</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.die"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.die" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to decide if the animal die with certainty if weight is 0 and with a probability</p>
+<dl class="simple">
+<dt>..math::</dt><dd><p>probability = omega * (1 - fitness)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if animal dies and False if animals do not die.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.fitness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness</span></span><a class="headerlink" href="#biosim.Animal.Animal.fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to return fitness of the animal. This is a property method so each time the weight
+or age changes, the fitness is updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitness of the animals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.fitness_calculation">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.fitness_calculation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.fitness_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate the fitness of the animals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – </p></li>
+<li><p><strong>weight</strong> (<em>int</em><em> or </em><em>float</em>) – </p></li>
+<li><p><strong>parameter</strong> (<em>dictionary</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fitness of the specific animal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.fitness_formula">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plus_minus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_half</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.fitness_formula"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.fitness_formula" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to return the formula to be used in fitness calculation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plus_minus</strong> (<em>1</em><em> or </em><em>-1</em>) – </p></li>
+<li><p><strong>x</strong> (<em>int</em><em> or </em><em>float</em>) – age or weight</p></li>
+<li><p><strong>x_half</strong> (<em>int</em><em> or </em><em>float</em>) – a_half or w_half</p></li>
+<li><p><strong>phi_x</strong> (<em>int</em><em> or </em><em>float</em>) – phi_age or phi_weight</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formula to be used in fitness calculation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.growth_per_year">
+<span class="sig-name descname"><span class="pre">growth_per_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.growth_per_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.growth_per_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to increase the age by 1 each year</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.migrate">
+<span class="sig-name descname"><span class="pre">migrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neighbors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.migrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to determine if the animal migrates. The animals migrate with probability
+mu * fitness
+Animals migrate to four adjacent cells at random with equal probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>neighbors</strong> – list of cells where animals can migrate</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if animals migrate otherwise false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.procreate">
+<span class="sig-name descname"><span class="pre">procreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.procreate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.procreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate if the animal has given birth. If the animal has given birth,
+it creates an instance of the class (object ) of Herbivore or the carnivore as baby animal.</p>
+<p>The weight of the baby is calculated random log normal distribution with w_birth and
+sigma_birth from following formula:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>N is the number of Herbivores in the cell at the start of the breeding season</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean value of animal has given birth or not and baby animal object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.set_params">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.set_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to set the parameter of the specific class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dictionary</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.update_para">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_para</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.update_para"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.update_para" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to check for unknown parameters and raises value error if the parameters are not in</dt><dd><p>animal parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dictionary</em>) – new params</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Animal.weight_loss_per_year">
+<span class="sig-name descname"><span class="pre">weight_loss_per_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Animal.weight_loss_per_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Animal.weight_loss_per_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to lose weight each year by the formula:
+weight * eta</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biosim.Animal.</span></span><span class="sig-name descname"><span class="pre">Carnivores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Carnivores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Carnivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore animals hunts and eats Herbivores. Carnivores can reside in Desert, Lowland
+and Highland</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – </p></li>
+<li><p><strong>weight</strong> (<em>float</em><em> or </em><em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.die">
+<span class="sig-name descname"><span class="pre">die</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.die" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to decide if the animal die with certainty if weight is 0 and with a probability</p>
+<dl class="simple">
+<dt>..math::</dt><dd><p>probability = omega * (1 - fitness)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if animal dies and False if animals do not die.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.eat">
+<span class="sig-name descname"><span class="pre">eat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Carnivores.eat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Carnivores.eat" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to get the list of herbivore animals that are eaten by carnivore animals. The weight</dt><dd><p>of the carnivore animal increases by beta * amount F. The carnivore will continue to
+kill herbivore until it has eaten amount F or has tried to kill all herbivore in a cell.
+The carnivore will kill herbivore with probability:
+0 if fitness of carnivore &lt;= fitness of herbivore
+(carnivore fitness - herbivore fitness)/ delta phi max if carnivore fitness - herbivore
+fitness &lt; delta phi max
+1 otherwise</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>animal_list</strong> (<em>list</em>) – Herbivore animal list in a cell</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of Herbivore animals that are eaten</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.fitness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness</span></span><a class="headerlink" href="#biosim.Animal.Carnivores.fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to return fitness of the animal. This is a property method so each time the weight
+or age changes, the fitness is updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitness of the animals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.fitness_calculation">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.fitness_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate the fitness of the animals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – </p></li>
+<li><p><strong>weight</strong> (<em>int</em><em> or </em><em>float</em>) – </p></li>
+<li><p><strong>parameter</strong> (<em>dictionary</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fitness of the specific animal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.fitness_formula">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plus_minus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_half</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.fitness_formula" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to return the formula to be used in fitness calculation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plus_minus</strong> (<em>1</em><em> or </em><em>-1</em>) – </p></li>
+<li><p><strong>x</strong> (<em>int</em><em> or </em><em>float</em>) – age or weight</p></li>
+<li><p><strong>x_half</strong> (<em>int</em><em> or </em><em>float</em>) – a_half or w_half</p></li>
+<li><p><strong>phi_x</strong> (<em>int</em><em> or </em><em>float</em>) – phi_age or phi_weight</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formula to be used in fitness calculation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.growth_per_year">
+<span class="sig-name descname"><span class="pre">growth_per_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.growth_per_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to increase the age by 1 each year</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.hunt">
+<span class="sig-name descname"><span class="pre">hunt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">animal_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Carnivores.hunt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Carnivores.hunt" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to determine the list of the herbivore animals that can be hunted. Carnivore</dt><dd><p>animal hunts herbivores in the order of the least fitness.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>animal_list</strong> (<em>list</em>) – Herbivore list in the cell in weight ascending order</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of herbivore animals that can be hunted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.migrate">
+<span class="sig-name descname"><span class="pre">migrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neighbors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to determine if the animal migrates. The animals migrate with probability
+mu * fitness
+Animals migrate to four adjacent cells at random with equal probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>neighbors</strong> – list of cells where animals can migrate</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if animals migrate otherwise false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.procreate">
+<span class="sig-name descname"><span class="pre">procreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.procreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate if the animal has given birth. If the animal has given birth,
+it creates an instance of the class (object ) of Herbivore or the carnivore as baby animal.</p>
+<p>The weight of the baby is calculated random log normal distribution with w_birth and
+sigma_birth from following formula:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>N is the number of Herbivores in the cell at the start of the breeding season</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean value of animal has given birth or not and baby animal object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.set_params">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to set the parameter of the specific class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dictionary</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.update_para">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_para</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.update_para" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to check for unknown parameters and raises value error if the parameters are not in</dt><dd><p>animal parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dictionary</em>) – new params</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Carnivores.weight_loss_per_year">
+<span class="sig-name descname"><span class="pre">weight_loss_per_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Carnivores.weight_loss_per_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to lose weight each year by the formula:
+weight * eta</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biosim.Animal.</span></span><span class="sig-name descname"><span class="pre">Herbivores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Herbivores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Herbivores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivore animals eats fodder and can reside in the Lowland, Highland and Desert
+although Dessert does not have any fodder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – </p></li>
+<li><p><strong>weight</strong> (<em>float</em><em> or </em><em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.die">
+<span class="sig-name descname"><span class="pre">die</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.die" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to decide if the animal die with certainty if weight is 0 and with a probability</p>
+<dl class="simple">
+<dt>..math::</dt><dd><p>probability = omega * (1 - fitness)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if animal dies and False if animals do not die.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.eat">
+<span class="sig-name descname"><span class="pre">eat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biosim/Animal.html#Herbivores.eat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biosim.Animal.Herbivores.eat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to increase the weight of the herbivore after the animal eats. The weight of the
+herbivore animal increases by beta * amount F of fodder</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.fitness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness</span></span><a class="headerlink" href="#biosim.Animal.Herbivores.fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to return fitness of the animal. This is a property method so each time the weight
+or age changes, the fitness is updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitness of the animals</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.fitness_calculation">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_calculation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.fitness_calculation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate the fitness of the animals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>age</strong> (<em>int</em>) – </p></li>
+<li><p><strong>weight</strong> (<em>int</em><em> or </em><em>float</em>) – </p></li>
+<li><p><strong>parameter</strong> (<em>dictionary</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fitness of the specific animal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.fitness_formula">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plus_minus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_half</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.fitness_formula" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to return the formula to be used in fitness calculation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plus_minus</strong> (<em>1</em><em> or </em><em>-1</em>) – </p></li>
+<li><p><strong>x</strong> (<em>int</em><em> or </em><em>float</em>) – age or weight</p></li>
+<li><p><strong>x_half</strong> (<em>int</em><em> or </em><em>float</em>) – a_half or w_half</p></li>
+<li><p><strong>phi_x</strong> (<em>int</em><em> or </em><em>float</em>) – phi_age or phi_weight</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formula to be used in fitness calculation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.growth_per_year">
+<span class="sig-name descname"><span class="pre">growth_per_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.growth_per_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to increase the age by 1 each year</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.migrate">
+<span class="sig-name descname"><span class="pre">migrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neighbors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to determine if the animal migrates. The animals migrate with probability
+mu * fitness
+Animals migrate to four adjacent cells at random with equal probability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>neighbors</strong> – list of cells where animals can migrate</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if animals migrate otherwise false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.procreate">
+<span class="sig-name descname"><span class="pre">procreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.procreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to calculate if the animal has given birth. If the animal has given birth,
+it creates an instance of the class (object ) of Herbivore or the carnivore as baby animal.</p>
+<p>The weight of the baby is calculated random log normal distribution with w_birth and
+sigma_birth from following formula:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>N is the number of Herbivores in the cell at the start of the breeding season</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean value of animal has given birth or not and baby animal object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.set_params">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to set the parameter of the specific class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dictionary</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.update_para">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_para</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.update_para" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Method to check for unknown parameters and raises value error if the parameters are not in</dt><dd><p>animal parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dictionary</em>) – new params</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biosim.Animal.Herbivores.weight_loss_per_year">
+<span class="sig-name descname"><span class="pre">weight_loss_per_year</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biosim.Animal.Herbivores.weight_loss_per_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to lose weight each year by the formula:
+weight * eta</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Graphicsdoc.html" class="btn btn-neutral float-right" title="Graphics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Celldoc.html" class="btn btn-neutral float-left" title="Cell" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hongpeng Zhang &amp; Sujan Devkota.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

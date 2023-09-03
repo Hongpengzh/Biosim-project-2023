@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>biosim.Cell &mdash; BioSim 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> BioSim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../classesdoc.html">Packages required</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classesdoc.html#modules">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BioSim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>biosim.Cell</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for biosim.Cell</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The Animal class with Herbivores and Carnivores as subclasses of Animal.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Hongpeng Zhang and Sujan Devkota&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;hongpeng.zhang@nmbu.no and sujan.devkota@nmbu.no&#39;</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+
+
+<div class="viewcode-block" id="Cell"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell">[docs]</a><span class="k">class</span> <span class="nc">Cell</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class Cell for one landscape type where animals reside.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ParamCell</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;f_max_L&#39;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s1">&#39;f_max_H&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">}</span>
+
+<div class="viewcode-block" id="Cell.update_cell_para"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.update_cell_para">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">update_cell_para</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">landscape</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to update parameters in the cell. Raises value error if values are negative</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        landscape: str</span>
+<span class="sd">        params: dictionary</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;the parameter for landscape must be larger than 0&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">landscape</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">ParamCell</span><span class="p">[</span><span class="s1">&#39;f_max_L&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;f_max&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">landscape</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">ParamCell</span><span class="p">[</span><span class="s1">&#39;f_max_H&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;f_max&#39;</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geography</span><span class="p">,</span> <span class="n">fodder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">animal_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Carnivores_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for class Cell.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        geography: str</span>
+<span class="sd">            Water, Lowland, Highland or Desert</span>
+<span class="sd">        fodder: int</span>
+<span class="sd">        animal_list: list</span>
+<span class="sd">            Herbivore list</span>
+<span class="sd">        Carnivores_list: list</span>
+<span class="sd">            Carnivore list</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - Geography or landscape types are Lowland, Highland, Desert and water.</span>
+
+<span class="sd">          .. code:: python</span>
+
+<span class="sd">             geography_dict = {&#39;W&#39;: &#39;Water&#39;, &#39;L&#39;: &#39;Lowland&#39;, &#39;H&#39;: &#39;Highland&#39;, &#39;D&#39;: &#39;Desert&#39;}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fodder</span> <span class="o">=</span> <span class="n">fodder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geography</span> <span class="o">=</span> <span class="n">geography</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span> <span class="o">=</span> <span class="n">animal_list</span> <span class="k">if</span> <span class="n">animal_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span> <span class="o">=</span> <span class="n">Carnivores_list</span> <span class="k">if</span> <span class="n">Carnivores_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Cell.produce_fodder"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.produce_fodder">[docs]</a>    <span class="k">def</span> <span class="nf">produce_fodder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to add fodder to the geography type. There is no fodder in desert and water.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geography</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geography</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fodder</span> <span class="o">+=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">geography</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fodder</span> <span class="o">+=</span> <span class="n">Cell</span><span class="o">.</span><span class="n">ParamCell</span><span class="p">[</span><span class="s1">&#39;f_max_L&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fodder</span> <span class="o">+=</span> <span class="n">Cell</span><span class="o">.</span><span class="n">ParamCell</span><span class="p">[</span><span class="s1">&#39;f_max_H&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Cell.herbivore_birth"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.herbivore_birth">[docs]</a>    <span class="k">def</span> <span class="nf">herbivore_birth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method that checks if herbivore animal has given birth and updates the herbivore animal list</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List</span>
+<span class="sd">            Baby herbivore animal list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">baby_animal_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">:</span>
+            <span class="n">baby</span> <span class="o">=</span> <span class="n">animal</span><span class="o">.</span><span class="n">procreate</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">baby</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">baby_animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span> <span class="o">+=</span> <span class="n">baby_animal_list</span>
+
+        <span class="k">return</span> <span class="n">baby_animal_list</span></div>
+
+<div class="viewcode-block" id="Cell.carnivore_birth"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.carnivore_birth">[docs]</a>    <span class="k">def</span> <span class="nf">carnivore_birth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method that checks if carnivore animal has given birth and updates the carnivore animal list</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List</span>
+<span class="sd">            Baby herbivore animal list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">baby_animal_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">:</span>
+            <span class="n">baby</span> <span class="o">=</span> <span class="n">animal</span><span class="o">.</span><span class="n">procreate</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">baby</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">baby_animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">baby</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span> <span class="o">+=</span> <span class="n">baby_animal_list</span>
+
+        <span class="k">return</span> <span class="n">baby_animal_list</span></div>
+
+<div class="viewcode-block" id="Cell.feed_animals"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.feed_animals">[docs]</a>    <span class="k">def</span> <span class="nf">feed_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to feed herbivore animals in the random order and stop when the fodder is not enough</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fodder</span> <span class="o">&gt;=</span> <span class="n">animal</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">]:</span>
+                <span class="n">animal</span><span class="o">.</span><span class="n">eat</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fodder</span> <span class="o">-=</span> <span class="n">animal</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span></div>
+
+<div class="viewcode-block" id="Cell.feed_carnivores"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.feed_carnivores">[docs]</a>    <span class="k">def</span> <span class="nf">feed_carnivores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to feed carnivores.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">carnivore_hunting_order_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">animal</span><span class="p">:</span> <span class="n">animal</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                                                  <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">carnivore_hunting_order_list</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">:</span>
+                <span class="c1"># Herbivores hunted in weight descending order</span>
+                <span class="n">herbivore_hunted_order_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">animal</span><span class="p">:</span> <span class="n">animal</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">herbivore_hunted_order_list</span><span class="p">]</span>
+                <span class="n">eaten_herbivores</span> <span class="o">=</span> <span class="n">animal</span><span class="o">.</span><span class="n">eat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">eaten_herbivores</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">herbivores</span> <span class="ow">in</span> <span class="n">eaten_herbivores</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">herbivores</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Cell.grow_and_loose_weight_herbivore"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.grow_and_loose_weight_herbivore">[docs]</a>    <span class="k">def</span> <span class="nf">grow_and_loose_weight_herbivore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to increase the age of the herbivore animal each year and decrease the weight of the</span>
+<span class="sd">            herbivore animal in a cell.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">:</span>
+            <span class="n">animal</span><span class="o">.</span><span class="n">growth_per_year</span><span class="p">()</span>
+            <span class="n">animal</span><span class="o">.</span><span class="n">weight_loss_per_year</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Cell.grow_and_loose_weight_carnivore"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.grow_and_loose_weight_carnivore">[docs]</a>    <span class="k">def</span> <span class="nf">grow_and_loose_weight_carnivore</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to increase the age of the carnivore animal each year and decrease the weight of the</span>
+<span class="sd">            carnivore animal in a cell.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">:</span>
+            <span class="n">animal</span><span class="o">.</span><span class="n">growth_per_year</span><span class="p">()</span>
+            <span class="n">animal</span><span class="o">.</span><span class="n">weight_loss_per_year</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Cell.herbivore_death"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.herbivore_death">[docs]</a>    <span class="k">def</span> <span class="nf">herbivore_death</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to check if the herbivore animal wants to die. If the animal dies, it removes the</span>
+<span class="sd">            animal from the herbivore list.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List</span>
+<span class="sd">            The list of died herbivore animals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">died_animal_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">animal</span><span class="o">.</span><span class="n">die</span><span class="p">():</span>
+                <span class="n">died_animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">died_animal_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">died_animal_list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">died_animal_list</span></div>
+
+<div class="viewcode-block" id="Cell.carnivore_death"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.carnivore_death">[docs]</a>    <span class="k">def</span> <span class="nf">carnivore_death</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to check if the carnivore animal wants to die. If the animal dies, it removes the</span>
+<span class="sd">            animal from the carnivore list.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List</span>
+<span class="sd">           The list of died carnivore animals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">died_carnivores_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">animal</span><span class="o">.</span><span class="n">die</span><span class="p">():</span>
+                <span class="n">died_carnivores_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">died_carnivores_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">died_carnivores_list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">died_carnivores_list</span></div>
+
+<div class="viewcode-block" id="Cell.animal_migration"><a class="viewcode-back" href="../../Celldoc.html#biosim.Cell.Cell.animal_migration">[docs]</a>    <span class="k">def</span> <span class="nf">animal_migration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to check if the animal wants to migrate. If the animal wants to stay, then the method</span>
+<span class="sd">            updates the animal in the stay list for both herbivores and carnivores in a particular</span>
+<span class="sd">            cell. If the animal wants to move then it appends the list of the destination cell.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        neighbors: list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">stay_animal_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">stay_carnivores_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">animal</span><span class="o">.</span><span class="n">moved</span><span class="p">:</span>
+                <span class="n">stay_animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">destination</span> <span class="o">=</span> <span class="n">animal</span><span class="o">.</span><span class="n">migrate</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">destination</span><span class="p">:</span>
+                    <span class="n">animal</span><span class="o">.</span><span class="n">moved</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">destination</span><span class="o">.</span><span class="n">animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">stay_animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">animal_list</span> <span class="o">=</span> <span class="n">stay_animal_list</span>
+
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">animal</span><span class="o">.</span><span class="n">moved</span><span class="p">:</span>
+                <span class="n">stay_carnivores_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">destination</span> <span class="o">=</span> <span class="n">animal</span><span class="o">.</span><span class="n">migrate</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">destination</span><span class="p">:</span>
+                    <span class="n">animal</span><span class="o">.</span><span class="n">moved</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">destination</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">stay_carnivores_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Carnivores_list</span> <span class="o">=</span> <span class="n">stay_carnivores_list</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hongpeng Zhang &amp; Sujan Devkota.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

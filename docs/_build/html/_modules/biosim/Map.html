@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>biosim.Map &mdash; BioSim 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> BioSim
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../classesdoc.html">Packages required</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classesdoc.html#modules">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BioSim</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>biosim.Map</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for biosim.Map</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The Map class</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Hongpeng Zhang and Sujan Devkota&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;hongpeng.zhang@nmbu.no and sujan.devkota@nmbu.no&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">biosim</span> <span class="kn">import</span> <span class="n">Cell</span><span class="p">,</span> <span class="n">Animal</span>
+
+
+<div class="viewcode-block" id="Map"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map">[docs]</a><span class="k">class</span> <span class="nc">Map</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for the whole island map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">geography_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="s1">&#39;Water&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="s1">&#39;Lowland&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="s1">&#39;Highland&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;Desert&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">island_map</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        island_map: str</span>
+<span class="sd">            Multi-line string specifying island geography</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - island_map should be a rectangle or a square, and the border should be water e.g.,</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">island_map</span> <span class="o">=</span> <span class="n">island_map</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_cells_array</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">island_map_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turn island_map into a numpy array</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Numpy array</span>
+<span class="sd">            A 2d numpy array with a letter in each position, representing the geography information</span>
+<span class="sd">            for the cell in the same position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">island_map</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)])</span>
+
+<div class="viewcode-block" id="Map.init_cells_array"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.init_cells_array">[docs]</a>    <span class="k">def</span> <span class="nf">init_cells_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Init the numpy array with the cell instances,</span>
+<span class="sd">        each cell instance has the geography information in the island_map_array.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Numpy array</span>
+<span class="sd">            A 2d numpy array with cell instances.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cells_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">geo</span> <span class="ow">in</span> <span class="n">Map</span><span class="o">.</span><span class="n">geography_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">n_geo</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">==</span> <span class="n">geo</span><span class="p">])</span>
+            <span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">==</span> <span class="n">geo</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">Cell</span><span class="o">.</span><span class="n">Cell</span><span class="p">(</span><span class="n">geography</span><span class="o">=</span><span class="n">geo</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span>
+                                                         <span class="nb">range</span><span class="p">(</span><span class="n">n_geo</span><span class="p">)]</span>
+
+        <span class="k">return</span> <span class="n">cells_array</span></div>
+
+<div class="viewcode-block" id="Map.add_fauna"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.add_fauna">[docs]</a>    <span class="k">def</span> <span class="nf">add_fauna</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add Herbivores and Carnivores into the map.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        population:</span>
+<span class="sd">            List of dictionaries specifying initial population.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - population should be in a list of dictionary, contain loc and pop information  e.g.,</span>
+
+<span class="sd">          .. code:: python</span>
+
+<span class="sd">             ini_herbs = [{&#39;loc&#39;: (2, 2),</span>
+<span class="sd">              &#39;pop&#39;: [{&#39;species&#39;: &#39;Herbivore&#39;,</span>
+<span class="sd">                       &#39;age&#39;: 5,</span>
+<span class="sd">                       &#39;weight&#39;: 20}</span>
+<span class="sd">                      for _ in range(50)]}]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tuple</span>
+<span class="sd">            The total amount of Herbivores and the total amount of Carnivores added into the map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="nb">dict</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
+                <span class="n">loc</span> <span class="o">=</span> <span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">animal_num</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">Carnivores_num</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">animal_list</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">Carnivores_list</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">fauna_dict</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">fauna_dict</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Herbivore&#39;</span><span class="p">:</span>
+                        <span class="n">animal_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animal</span><span class="o">.</span><span class="n">Herbivores</span><span class="p">(</span><span class="n">fauna_dict</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span>
+                                                             <span class="n">fauna_dict</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]))</span>
+                        <span class="n">animal_num</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">fauna_dict</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Carnivore&#39;</span><span class="p">:</span>
+                        <span class="n">Carnivores_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Animal</span><span class="o">.</span><span class="n">Carnivores</span><span class="p">(</span><span class="n">fauna_dict</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span>
+                                                                 <span class="n">fauna_dict</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]))</span>
+                        <span class="n">Carnivores_num</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span><span class="o">.</span><span class="n">animal_list</span> <span class="o">+=</span> <span class="n">animal_list</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span><span class="o">.</span><span class="n">Carnivores_list</span> <span class="o">+=</span> <span class="n">Carnivores_list</span>
+
+            <span class="k">return</span> <span class="n">animal_num</span><span class="p">,</span> <span class="n">Carnivores_num</span></div>
+
+<div class="viewcode-block" id="Map.annul_cycle"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.annul_cycle">[docs]</a>    <span class="k">def</span> <span class="nf">annul_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Do the annual cycle on the map step by step in the right order.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tuple</span>
+<span class="sd">            the total amount, the distributing numpy arrays, the fitness, age, weight</span>
+<span class="sd">            of herbivores and carnivores after the annual cycle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">animal_percell_year</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">carnivore_percell_year</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">produce</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">givebirth</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_permit</span><span class="p">()</span>  <span class="c1"># give all the animals the right to move before annul migrate start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">migrate</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grow_loss</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_fodder</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">die</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">array_colormap</span><span class="p">(</span><span class="n">cellarray</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Get the distributing numpy arrays of herbivores and carnivores</span>
+<span class="sd">            from the cells numpy array to make colormaps.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            cellarray: numpy array</span>
+<span class="sd">                The numpy array of cells</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            Tuple</span>
+<span class="sd">                The distributing numpy arrays of herbivores and carnivores</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">Herbivores_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">cellarray</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">Carnivores_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">cellarray</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="k">for</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">cellarray</span><span class="p">):</span>
+                <span class="n">Herbivores_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">animal_list</span><span class="p">)</span>
+                <span class="n">Carnivores_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">Herbivores_array</span><span class="p">,</span> <span class="n">Carnivores_array</span>
+
+        <span class="n">cells_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span>
+
+        <span class="n">Herbivores_distribute</span><span class="p">,</span> <span class="n">Carnivores_distribute</span> <span class="o">=</span> <span class="n">array_colormap</span><span class="p">(</span><span class="n">cells_array</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="n">animal_percell_year</span> <span class="o">+=</span> <span class="n">cell</span><span class="o">.</span><span class="n">animal_list</span>
+            <span class="n">carnivore_percell_year</span> <span class="o">+=</span> <span class="n">cell</span><span class="o">.</span><span class="n">Carnivores_list</span>
+
+        <span class="n">h_fitness_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">h_age_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">h_weight_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animal_percell_year</span><span class="p">:</span>
+            <span class="n">h_fitness_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+            <span class="n">h_age_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+            <span class="n">h_weight_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+
+        <span class="n">c_fitness_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">c_age_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">c_weight_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">carnivore_percell_year</span><span class="p">:</span>
+            <span class="n">c_fitness_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+            <span class="n">c_age_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+            <span class="n">c_weight_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">animal</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">animal_percell_year</span><span class="p">,</span> <span class="n">carnivore_percell_year</span><span class="p">,</span> \
+            <span class="n">Herbivores_distribute</span><span class="p">,</span> <span class="n">Carnivores_distribute</span><span class="p">,</span> \
+            <span class="n">h_fitness_list</span><span class="p">,</span> <span class="n">h_age_list</span><span class="p">,</span> <span class="n">h_weight_list</span><span class="p">,</span> \
+            <span class="n">c_fitness_list</span><span class="p">,</span> <span class="n">c_age_list</span><span class="p">,</span> <span class="n">c_weight_list</span></div>
+
+<div class="viewcode-block" id="Map.produce"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.produce">[docs]</a>    <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Produce fodder on Low land and High land cells in the map.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">)</span>
+                                     <span class="o">|</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">)]:</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">produce_fodder</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Map.givebirth"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.givebirth">[docs]</a>    <span class="k">def</span> <span class="nf">givebirth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let herbivores and carnivores in the map procreate.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">herbivore_birth</span><span class="p">()</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">carnivore_birth</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Map.feed"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.feed">[docs]</a>    <span class="k">def</span> <span class="nf">feed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let herbivores and carnivores in the map feed themselves.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">feed_animals</span><span class="p">()</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">feed_carnivores</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Map.move_permit"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.move_permit">[docs]</a>    <span class="k">def</span> <span class="nf">move_permit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Give herbivores and carnivores in the map permission to move.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">animal_list</span><span class="p">:</span>
+                <span class="n">animal</span><span class="o">.</span><span class="n">moved</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">Carnivores_list</span><span class="p">:</span>
+                <span class="n">animal</span><span class="o">.</span><span class="n">moved</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Map.migrate"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.migrate">[docs]</a>    <span class="k">def</span> <span class="nf">migrate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let herbivores and carnivores in the map migrate to accessible places. &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">geography</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+                <span class="n">neighbors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+                <span class="n">cell</span><span class="o">.</span><span class="n">animal_migration</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Map.get_neighbors"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.get_neighbors">[docs]</a>    <span class="k">def</span> <span class="nf">get_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the accessible cells list for fauna on the cell with the location i, j in the map.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        i: int</span>
+<span class="sd">            The row location of the cell</span>
+<span class="sd">        j: int</span>
+<span class="sd">            The column location of the cell</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            The accessible cells list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">island_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">map_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">island_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">island_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">cells_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span>
+        <span class="n">neighbors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cells_array</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">geography</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+                <span class="n">neighbors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cells_array</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">map_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">cells_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">geography</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+                <span class="n">neighbors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cells_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cells_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">geography</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+                <span class="n">neighbors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cells_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">map_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">cells_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">geography</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+                <span class="n">neighbors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cells_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">neighbors</span></div>
+
+<div class="viewcode-block" id="Map.grow_loss"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.grow_loss">[docs]</a>    <span class="k">def</span> <span class="nf">grow_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let herbivores and carnivores in the map loss weight.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">grow_and_loose_weight_herbivore</span><span class="p">()</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">grow_and_loose_weight_carnivore</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Map.reset_fodder"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.reset_fodder">[docs]</a>    <span class="k">def</span> <span class="nf">reset_fodder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the fodder amount after herbivores and carnivores feed themselves in the map&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">fodder</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="Map.die"><a class="viewcode-back" href="../../Mapdoc.html#biosim.Map.Map.die">[docs]</a>    <span class="k">def</span> <span class="nf">die</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let herbivores and carnivores in the map die.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cells_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">island_map_array</span> <span class="o">!=</span> <span class="s1">&#39;W&#39;</span><span class="p">]:</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">herbivore_death</span><span class="p">()</span>
+            <span class="n">cell</span><span class="o">.</span><span class="n">carnivore_death</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Hongpeng Zhang &amp; Sujan Devkota.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
