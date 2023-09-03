@@ -1,10 +1,12 @@
 # Project background
 Please read the *project_description.pdf* and the documentation in *docs/_build/html/index.html*
 
-# Simulation result
-This vedio shows the simulation process:
-[![vedio](presentation/sample.mp4)](presentation/sample.mp4)
+# Simulation process vedio
+This vedio shows the simulation process for 400 years:
 
+https://github.com/Hongpengzh/Ecosystem-simulation/assets/127026756/5dec5a22-a642-4083-9734-c7f3a9d7d6aa
+
+# Simulation result snapshot
 ![image](snapshot_sample.png)
 
 # How to run the project
