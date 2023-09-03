@@ -8,6 +8,7 @@ https://github.com/Hongpengzh/Ecosystem-simulation/assets/127026756/5dec5a22-a64
 
 # Simulation result snapshot
 ![image](snapshot_sample.png)
+![image](snapshot2.png)
 
 # How to run the project
 To run the simulation, you should install all the packages in conda enviroment *projectenv.yaml*.
