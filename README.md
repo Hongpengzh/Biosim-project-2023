@@ -1,6 +1,12 @@
 # Project background
 Please read the *project_description.pdf* and the documentation in *docs/_build/html/index.html*
 
+# Simulation result
+This vedio shows the simulation process:
+[![vedio](presentation/sample.mp4)](presentation/sample.mp4)
+
+![image](snapshot_sample.png)
+
 # How to run the project
 To run the simulation, you should install all the packages in conda enviroment *projectenv.yaml*.
 
