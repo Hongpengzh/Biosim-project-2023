@@ -1,6 +1,8 @@
+# Project background
+Please read the *project_description.pdf* and the documentation in *docs/_build/html/index.html*
+
 # How to run the project
-To run the simulation, you should install *numba* 0.56.4 or later version, *ffmpeg* 4.2.2 or later version 
-besides the packages in conda enviroment "inf200jan".
+To run the simulation, you should install all the packages in conda enviroment *projectenv.yaml*.
 
 Then you could set initial parameters and call *simulate()*
 as *sample_sim.py* or *check_sim.py* showed in *reference_examples*.
