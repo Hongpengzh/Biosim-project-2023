@@ -1,6 +1,8 @@
 # Project background
 Please read the *project_description.pdf* and the documentation in *docs/_build/html/index.html*
 
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 # Simulation process video
 This vedio shows the simulation process for 400 years:
 
